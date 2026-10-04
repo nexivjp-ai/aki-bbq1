@@ -6,7 +6,7 @@ update();setInterval(update,1000);
 const photoButtons=[...document.querySelectorAll('[data-photo]')];
 const photoDialog=document.getElementById('photo-dialog');
 let photoIndex=0;
-function showPhoto(index){photoIndex=(index+photoButtons.length)%photoButtons.length;const source=photoButtons[photoIndex].querySelector('img');const large=document.getElementById('photo-large');large.src=source.src;large.alt=source.alt;document.getElementById('photo-position').textContent=`${photoIndex+1} / ${photoButtons.length}`;}
+function showPhoto(index){photoIndex=(index+photoButtons.length)%photoButtons.length;const source=photoButtons[photoIndex].querySelector('img');const large=document.getElementById('photo-large');large.src=source.currentSrc.endsWith('.webp')&&source.dataset.full?source.dataset.full:source.src;large.alt=source.alt;document.getElementById('photo-position').textContent=`${photoIndex+1} / ${photoButtons.length}`;}
 photoButtons.forEach((button,index)=>button.addEventListener('click',()=>{showPhoto(index);photoDialog.showModal();document.body.style.overflow='hidden';}));
 function closePhoto(){photoDialog.close();}
 document.getElementById('photo-close').addEventListener('click',closePhoto);
@@ -15,3 +15,13 @@ document.getElementById('photo-next').addEventListener('click',()=>showPhoto(pho
 photoDialog.addEventListener('close',()=>{document.body.style.overflow='';photoButtons[photoIndex].focus();});
 photoDialog.addEventListener('click',event=>{if(event.target===photoDialog){const box=photoDialog.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)closePhoto();}});
 photoDialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();showPhoto(photoIndex-1);}if(event.key==='ArrowRight'){event.preventDefault();showPhoto(photoIndex+1);}});
+
+const autumnIntro=document.querySelector('.autumn-intro');
+if(autumnIntro){
+  const dismissIntro=()=>autumnIntro.remove();
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){dismissIntro();}
+  else{
+    autumnIntro.addEventListener('animationend',event=>{if(event.target===autumnIntro)dismissIntro();});
+    setTimeout(dismissIntro,1600);
+  }
+}

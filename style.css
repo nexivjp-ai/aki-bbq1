@@ -2,3 +2,28 @@
 /* Readable event schedule and practical visitor information. */
 .section-lead{font-size:16px;line-height:1.9;margin:0 0 30px;max-width:760px}.timeline{display:block;border-top:2px solid var(--ink)}.timeline article,.timeline article:nth-child(2),.timeline article:nth-child(3){display:grid;grid-template-columns:180px minmax(0,1fr);gap:30px;background:transparent;border:0;border-bottom:1px solid #20201e55;padding:28px 12px;box-shadow:none}.timeline article>span{font-size:38px;line-height:1.15;white-space:nowrap}.schedule-time small{display:block;font-size:18px;font-weight:700;letter-spacing:0;line-height:1.7;margin-top:6px}.timeline article>div{border:0;margin:0;padding:0}.schedule-tag{display:inline-block;font-size:12px;line-height:1.6;border:1px solid var(--ink);padding:2px 9px;margin-bottom:10px;background:var(--paper)}.timeline article h3{font-size:21px;margin-bottom:5px}.timeline article p{font-size:16px}.timeline article.start-event{background:#ffb5cb;padding-left:20px;padding-right:20px;border-bottom:2px solid var(--ink)}.start-event .schedule-tag{background:var(--ink);color:white}.schedule-end{font-size:14px;line-height:1.9;margin:24px 0 0;max-width:760px}.warm-notice{background:#f5d567;border:2px solid var(--ink);padding:30px;box-shadow:5px 5px 0 var(--ink);margin-bottom:40px}.notice-label{font-size:14px;font-weight:700;border-bottom:1px solid var(--ink);display:inline-block;margin-bottom:16px}.warm-notice h3{font-size:24px;line-height:1.6;margin:0 0 12px}.warm-notice p{max-width:800px;margin:0;line-height:1.95}.news-item{padding-top:24px}.news-item p{max-width:760px}.section-heading .eyebrow{font-size:clamp(30px,5vw,60px)}h2{font-size:21px}.hero-link{bottom:34px}.hero{min-height:780px}@media(max-width:700px){header{flex-wrap:wrap;gap:12px;position:relative;padding:16px 22px}header .brand{font-size:24px}nav{width:100%;justify-content:space-between;gap:12px;font-size:14px}.hero{min-height:620px}.hero-copy{padding-top:28px}.hero-link{bottom:165px}.section-heading .eyebrow{font-size:clamp(28px,8.5vw,42px)}h2{font-size:19px}.section{padding:46px 22px}.timeline article,.timeline article:nth-child(2),.timeline article:nth-child(3){grid-template-columns:95px minmax(0,1fr);gap:16px;padding:24px 0}.timeline article>span{font-size:29px}.schedule-time small{font-size:15px}.timeline article h3{font-size:18px;line-height:1.6}.timeline article p{font-size:16px;line-height:1.8}.timeline article.start-event{padding:24px 12px;grid-template-columns:95px minmax(0,1fr)}.warm-notice{padding:24px 20px;margin-bottom:34px}.warm-notice h3{font-size:21px}.news-meta{flex-wrap:wrap;gap:8px 16px}.notice-strip{align-items:flex-start}.section-lead{margin-bottom:24px}}@media(max-width:370px){.timeline article,.timeline article:nth-child(2),.timeline article:nth-child(3),.timeline article.start-event{grid-template-columns:80px minmax(0,1fr);gap:12px}.timeline article>span{font-size:26px}.schedule-time small{font-size:14px}nav{gap:8px;font-size:14px}}
 @media(max-width:700px){.photo-tile:first-child{grid-column:auto;aspect-ratio:4/3}.photo-grid{gap:20px 15px}}
+
+/* A short autumn welcome; the page remains available without JavaScript. */
+.autumn-intro{position:fixed;inset:0;z-index:100;background:#fff;overflow:hidden;pointer-events:none;animation:intro-reveal 1.2s ease-out both}
+.autumn-leaf{position:absolute;top:0;left:var(--leaf-left);width:var(--leaf-size);height:var(--leaf-size);color:var(--leaf-color);opacity:0;animation:leaf-fall 1.1s cubic-bezier(.22,.5,.45,1) var(--leaf-delay) both;transform-origin:center}
+.autumn-leaf svg{display:block;width:100%;height:100%}
+@keyframes leaf-fall{0%{opacity:0;transform:translate3d(-18px,-80px,0) rotate(-40deg)}15%{opacity:.95}65%{opacity:.95}100%{opacity:0;transform:translate3d(18px,65vh,0) rotate(95deg)}}
+@keyframes intro-reveal{0%,38%{opacity:1}100%{opacity:0;visibility:hidden}}
+/* Preserve the whole group photo and avoid an oversized empty viewer. */
+.photo-tile{aspect-ratio:auto;touch-action:manipulation}
+.photo-tile img{height:auto;aspect-ratio:4/3;object-fit:contain}
+dialog img{height:auto;max-height:68dvh;object-fit:contain}
+dialog button{min-height:44px;touch-action:manipulation}
+.section-heading>div{min-width:0}
+.section-number{flex-shrink:0}
+@media(max-width:700px){
+  .photo-tile:first-child{aspect-ratio:auto}
+  dialog{max-height:calc(100dvh - 32px);width:calc(100vw - 32px)}
+  dialog img{height:auto;max-height:calc(100dvh - 180px)}
+}
+@media(max-width:370px){
+  .countdown{gap:clamp(6px,3vw,11px)}
+  .countdown div{min-width:38px}
+  .countdown b{font-size:36px}
+}
+@media(prefers-reduced-motion:reduce){.autumn-intro{display:none}.autumn-leaf{animation:none}}
