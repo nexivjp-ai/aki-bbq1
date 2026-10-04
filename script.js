@@ -21,7 +21,7 @@ if(autumnIntro){
   const dismissIntro=()=>autumnIntro.remove();
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){dismissIntro();}
   else{
-    autumnIntro.addEventListener('animationend',event=>{if(event.target===autumnIntro)dismissIntro();});
-    setTimeout(dismissIntro,1600);
+    autumnIntro.addEventListener('animationend',event=>{if(event.target===autumnIntro&&event.animationName==='intro-life')dismissIntro();});
+    setTimeout(dismissIntro,9500);
   }
 }

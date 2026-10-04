@@ -27,3 +27,35 @@ dialog button{min-height:44px;touch-action:manipulation}
   .countdown b{font-size:36px}
 }
 @media(prefers-reduced-motion:reduce){.autumn-intro{display:none}.autumn-leaf{animation:none}}
+
+/* Locally hosted, compact font subsets for the event's lettering. */
+@font-face{font-family:'BBQ Heading';src:url('fonts/bbq-heading.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'BBQ Body';src:url('fonts/bbq-body.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'BBQ Body';src:url('fonts/bbq-body-bold.woff2') format('woff2');font-weight:700 900;font-style:normal;font-display:swap}
+@font-face{font-family:'BBQ Display';src:url('fonts/bbq-display.woff2') format('woff2');font-weight:600 900;font-style:normal;font-display:swap}
+body{font-family:'BBQ Body','Hiragino Maru Gothic ProN','Yu Gothic',sans-serif;letter-spacing:.015em}
+button{font-family:inherit}
+h1,h2,h3,.brand,footer>span{font-family:'BBQ Heading','BBQ Body',sans-serif;font-weight:400;letter-spacing:.02em}
+h1{line-height:1.3;letter-spacing:.015em}
+.hero-kicker{font-weight:700}
+.brand span,.eyebrow,.event-subtitle,.hero-info .hero-date,.countdown b,.notice-strip>span,.section-number,.timeline article>span,.news-meta time,.photo-tile span{font-family:'BBQ Display','BBQ Body',sans-serif}
+.section-heading .eyebrow{letter-spacing:-.025em}
+.event-subtitle{letter-spacing:.01em}
+.details p{font-weight:700}
+/* White fades first; each leaf continues its full-height, unhurried fall. */
+.autumn-intro{background:transparent;animation:intro-life 9s linear both}
+.autumn-intro::before{content:'';position:absolute;inset:0;background:#fff;animation:intro-reveal 2.2s ease-in-out both}
+.autumn-leaf{animation:leaf-fall var(--leaf-duration,7s) linear var(--leaf-delay,0s) both;opacity:0}
+@keyframes intro-life{0%,99.9%{visibility:visible}100%{visibility:hidden}}
+@keyframes intro-reveal{0%,25%{opacity:1}100%{opacity:0}}
+@keyframes leaf-fall{
+  0%{opacity:0;transform:translate3d(-12px,-90px,0) rotate(-24deg)}
+  6%{opacity:.92}
+  25%{transform:translate3d(var(--leaf-sway,18px),calc(25dvh - 45px),0) rotate(18deg)}
+  50%{transform:translate3d(calc(var(--leaf-sway,18px) * -.6),50dvh,0) rotate(-14deg)}
+  75%{transform:translate3d(calc(var(--leaf-sway,18px) * .65),calc(75dvh + 45px),0) rotate(22deg)}
+  94%{opacity:.92}
+  100%{opacity:0;transform:translate3d(-8px,calc(100dvh + 90px),0) rotate(-32deg)}
+}
+@media(max-width:700px){h1{font-size:clamp(62px,20vw,82px)}.hero-kicker{letter-spacing:.02em}}
+@media(prefers-reduced-motion:reduce){.autumn-intro,.autumn-intro::before{display:none;animation:none}.autumn-leaf{animation:none}}
